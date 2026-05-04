@@ -1,14 +1,39 @@
 import { useState, useEffect } from "react";
-import {
-  collection,
-  query,
-  orderBy,
-  getDocs,
-  where,
-} from "firebase/firestore";
-import { db } from "../lib/firebase";
+import { fas } from "../lib/api";
 import { SEED_EVENTS } from "../data/events";
 import type { Event, Category } from "../types";
+
+interface APIEvent {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  city: string;
+  category: string;
+  lat: number;
+  lng: number;
+  creator_id: string | null;
+  group_id: string | null;
+  group_name: string | null;
+  attendee_count: number;
+}
+
+function toEvent(e: APIEvent): Event {
+  return {
+    id: e.id,
+    title: e.title,
+    description: e.description,
+    date: e.date,
+    location: e.location,
+    city: e.city,
+    category: e.category as Category,
+    lat: e.lat,
+    lng: e.lng,
+    attendeeCount: e.attendee_count,
+    groupName: e.group_name ?? undefined,
+  };
+}
 
 export function useEvents(category?: Category, city?: string) {
   const [events, setEvents] = useState<Event[]>([]);
@@ -18,39 +43,30 @@ export function useEvents(category?: Category, city?: string) {
     let cancelled = false;
 
     async function fetchEvents() {
-      if (!db) {
-        if (!cancelled) applyFilters(SEED_EVENTS);
-        if (!cancelled) setLoading(false);
-        return;
-      }
-
       try {
-        const eventsRef = collection(db, "events");
-        const q = category
-          ? query(eventsRef, where("category", "==", category), orderBy("date"))
-          : query(eventsRef, orderBy("date"));
-        const snapshot = await getDocs(q);
+        const params: Record<string, string> = {};
+        if (category) params["category"] = category;
+        if (city) params["city"] = city;
+
+        const data = await fas.get<{ events: APIEvent[] }>("/meetup/events", params);
 
         if (!cancelled) {
-          if (snapshot.empty) {
-            applyFilters(SEED_EVENTS);
+          if (data.events.length > 0) {
+            setEvents(data.events.map(toEvent));
           } else {
-            applyFilters(
-              snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Event))
-            );
+            // Fall back to seed data if API is empty for this filter
+            applyLocalFilters();
           }
         }
       } catch {
-        if (!cancelled) {
-          applyFilters(SEED_EVENTS);
-        }
+        if (!cancelled) applyLocalFilters();
       } finally {
         if (!cancelled) setLoading(false);
       }
     }
 
-    function applyFilters(all: Event[]) {
-      let filtered = all;
+    function applyLocalFilters() {
+      let filtered = SEED_EVENTS;
       if (category) filtered = filtered.filter((e) => e.category === category);
       if (city) filtered = filtered.filter((e) => e.city === city);
       filtered.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -58,9 +74,7 @@ export function useEvents(category?: Category, city?: string) {
     }
 
     fetchEvents();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [category, city]);
 
   return { events, loading };

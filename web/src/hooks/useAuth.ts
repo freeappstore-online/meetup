@@ -1,36 +1,24 @@
 import { useState, useEffect } from "react";
-import {
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut as firebaseSignOut,
-  GoogleAuthProvider,
-  type User,
-} from "firebase/auth";
-import { auth } from "../lib/firebase";
+import { fas } from "../lib/api";
+import type { User } from "@freeappstore/sdk";
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(!!auth);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!auth) return;
-    const unsubscribe = onAuthStateChanged(auth, (u) => {
+    fas.auth.getUser().then((u) => {
       setUser(u);
       setLoading(false);
     });
-    return unsubscribe;
   }, []);
 
-  const signInWithGoogle = async () => {
-    if (!auth) return;
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-  };
+  const signIn = () => fas.auth.signIn();
 
   const signOut = async () => {
-    if (!auth) return;
-    await firebaseSignOut(auth);
+    await fas.auth.signOut();
+    setUser(null);
   };
 
-  return { user, loading, signInWithGoogle, signOut };
+  return { user, loading, signIn, signOut };
 }

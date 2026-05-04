@@ -31,14 +31,14 @@ function categoryColor(cat: string): string {
 }
 
 export function EventDetail({ event }: { event: Event }) {
-  const { user, signInWithGoogle } = useAuth();
+  const { user, signIn } = useAuth();
   const [rsvpd, setRsvpd] = useState(false);
   const catInfo = CATEGORIES.find((c) => c.value === event.category);
   const color = categoryColor(event.category);
 
   const handleRsvp = async () => {
     if (!user) {
-      await signInWithGoogle();
+      await signIn();
       return;
     }
     setRsvpd(!rsvpd);

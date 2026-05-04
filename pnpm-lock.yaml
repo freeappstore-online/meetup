@@ -10,6 +10,9 @@ importers:
 
   web:
     dependencies:
+      '@freeappstore/sdk':
+        specifier: link:../../sdk
+        version: link:../../sdk
       firebase:
         specifier: ^11.0.0
         version: 11.10.0

@@ -1,7 +1,7 @@
 import { useAuth } from "../hooks/useAuth";
 
 export function Profile() {
-  const { user, loading, signInWithGoogle, signOut } = useAuth();
+  const { user, loading, signIn, signOut } = useAuth();
 
   if (loading) {
     return (
@@ -30,14 +30,14 @@ export function Profile() {
             Sign in to RSVP to events and manage your profile.
           </p>
           <button
-            onClick={signInWithGoogle}
+            onClick={signIn}
             className="px-6 py-3 font-semibold text-white transition-colors"
             style={{
               borderRadius: "var(--radius-btn)",
               background: "var(--color-accent)",
             }}
           >
-            Sign in with Google
+            Sign in
           </button>
         </div>
         <div className="text-center text-xs pt-4" style={{ color: "var(--color-muted)" }}>
@@ -64,9 +64,9 @@ export function Profile() {
         }}
       >
         <div className="flex items-center gap-4 mb-6">
-          {user.photoURL ? (
+          {user.photo_url ? (
             <img
-              src={user.photoURL}
+              src={user.photo_url}
               alt=""
               className="w-16 h-16 rounded-full"
             />
@@ -75,11 +75,11 @@ export function Profile() {
               className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-2xl"
               style={{ background: "var(--color-accent)" }}
             >
-              {(user.displayName || user.email || "?").charAt(0).toUpperCase()}
+              {(user.name || user.email || "?").charAt(0).toUpperCase()}
             </div>
           )}
           <div>
-            <h2 className="text-xl font-semibold">{user.displayName || "Anonymous"}</h2>
+            <h2 className="text-xl font-semibold">{user.name || "Anonymous"}</h2>
             <p className="text-sm" style={{ color: "var(--color-muted)" }}>
               {user.email}
             </p>

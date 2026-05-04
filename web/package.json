@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@freeappstore/sdk": "link:../../sdk",
     "firebase": "^11.0.0",
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
