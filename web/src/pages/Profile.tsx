@@ -41,7 +41,7 @@ export function Profile() {
           </button>
         </div>
         <div className="text-center text-xs pt-4" style={{ color: "var(--color-muted)" }}>
-          <a href="https://freeappstore.io" target="_blank" rel="noopener noreferrer" className="hover:underline">
+          <a href="https://freeappstore.online" target="_blank" rel="noopener noreferrer" className="hover:underline">
             Part of FreeAppStore — free forever
           </a>
         </div>
@@ -128,7 +128,7 @@ export function Profile() {
       </button>
 
       <div className="text-xs pt-4" style={{ color: "var(--color-muted)" }}>
-        <a href="https://freeappstore.io" target="_blank" rel="noopener noreferrer" className="hover:underline">
+        <a href="https://freeappstore.online" target="_blank" rel="noopener noreferrer" className="hover:underline">
           Part of FreeAppStore — free forever
         </a>
       </div>

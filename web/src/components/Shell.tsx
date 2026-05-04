@@ -62,7 +62,7 @@ export function Shell({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="mt-auto pt-6 border-t text-xs" style={{ borderColor: "var(--color-line)", color: "var(--color-muted)" }}>
-          <a href="https://freeappstore.io" target="_blank" rel="noopener noreferrer" className="hover:underline">
+          <a href="https://freeappstore.online" target="_blank" rel="noopener noreferrer" className="hover:underline">
             Part of FreeAppStore — free forever
           </a>
         </div>
