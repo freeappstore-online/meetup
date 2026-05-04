@@ -1,0 +1,9 @@
+{
+  "name": "freemeetupapp",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "scripts": {
+    "dev": "pnpm --filter @freemeetupapp/web dev",
+    "build": "pnpm --filter @freemeetupapp/web build"
+  }
+}
