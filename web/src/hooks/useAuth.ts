@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { fas } from "../lib/api";
-import type { User } from "@freeappstore/sdk";
+import type { UserWithRoles } from "@freeappstore/sdk";
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserWithRoles | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import type { Event } from "../types";
 import { CATEGORIES } from "../types";
 import { useAuth } from "../hooks/useAuth";
 import { EventMap } from "./EventMap";
+import { fas } from "../lib/api";
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -41,7 +42,16 @@ export function EventDetail({ event }: { event: Event }) {
       await signIn();
       return;
     }
-    setRsvpd(!rsvpd);
+    try {
+      if (rsvpd) {
+        await fas.del(`/meetup/events/${event.id}/rsvp`);
+      } else {
+        await fas.post(`/meetup/events/${event.id}/rsvp`);
+      }
+      setRsvpd(!rsvpd);
+    } catch {
+      // Silently fail — user sees no change
+    }
   };
 
   return (
