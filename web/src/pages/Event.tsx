@@ -19,9 +19,9 @@ export function EventPage() {
 
   if (!event) {
     return (
-      <div className="text-center py-12">
-        <p style={{ color: "var(--color-muted)" }}>Event not found.</p>
-        <Link to="/" className="mt-4 inline-block font-medium" style={{ color: "var(--color-accent)" }}>
+      <div className="text-center py-16">
+        <p className="text-lg font-medium" style={{ color: "var(--color-muted)" }}>Event not found</p>
+        <Link to="/" className="mt-4 inline-block text-sm font-semibold" style={{ color: "var(--color-accent)" }}>
           Back to events
         </Link>
       </div>
@@ -32,13 +32,13 @@ export function EventPage() {
     <div>
       <Link
         to="/"
-        className="inline-flex items-center gap-1 text-sm mb-6"
+        className="inline-flex items-center gap-1.5 text-sm font-medium mb-6 transition-colors hover:opacity-70"
         style={{ color: "var(--color-muted)" }}
       >
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
-        Back
+        Back to events
       </Link>
       <EventDetail event={event} />
     </div>
