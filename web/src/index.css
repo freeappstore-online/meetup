@@ -39,3 +39,10 @@ body {
 h1, h2, h3 {
   font-family: var(--font-display);
 }
+
+/* Brand variable aliases for compliance */
+:root {
+  --paper: var(--color-paper);
+  --ink: var(--color-ink);
+  --accent: var(--color-accent);
+}
