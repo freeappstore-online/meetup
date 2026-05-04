@@ -18,6 +18,12 @@ export function useEvents(category?: Category, city?: string) {
     let cancelled = false;
 
     async function fetchEvents() {
+      if (!db) {
+        if (!cancelled) applyFilters(SEED_EVENTS);
+        if (!cancelled) setLoading(false);
+        return;
+      }
+
       try {
         const eventsRef = collection(db, "events");
         const q = category

@@ -10,9 +10,10 @@ import { auth } from "../lib/firebase";
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!!auth);
 
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
@@ -21,11 +22,13 @@ export function useAuth() {
   }, []);
 
   const signInWithGoogle = async () => {
+    if (!auth) return;
     const provider = new GoogleAuthProvider();
     await signInWithPopup(auth, provider);
   };
 
   const signOut = async () => {
+    if (!auth) return;
     await firebaseSignOut(auth);
   };
 

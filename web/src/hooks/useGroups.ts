@@ -78,6 +78,12 @@ export function useGroups() {
     let cancelled = false;
 
     async function fetchGroups() {
+      if (!db) {
+        if (!cancelled) setGroups(MOCK_GROUPS);
+        if (!cancelled) setLoading(false);
+        return;
+      }
+
       try {
         const groupsRef = collection(db, "groups");
         const q = query(groupsRef);
