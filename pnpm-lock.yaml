@@ -10,9 +10,6 @@ importers:
 
   web:
     dependencies:
-      '@freeappstore/sdk':
-        specifier: link:../../sdk
-        version: link:../../sdk
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4

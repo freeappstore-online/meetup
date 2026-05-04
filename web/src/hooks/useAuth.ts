@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fas } from "../lib/api";
-import type { UserWithRoles } from "@freeappstore/sdk";
+import type { UserWithRoles } from "../sdk/auth";
 
 export function useAuth() {
   const [user, setUser] = useState<UserWithRoles | null>(null);

@@ -1,4 +1,4 @@
-import { createClient } from "@freeappstore/sdk";
+import { createClient } from "../sdk/client";
 
 export const fas = createClient("https://api.freeappstore.online");
 
