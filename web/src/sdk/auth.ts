@@ -9,8 +9,8 @@ export interface UserWithRoles extends User {
 export interface FASAuth {
   /** Get current user + roles (null if not signed in) */
   getUser(): Promise<UserWithRoles | null>;
-  /** Start Google sign-in (redirects the page) */
-  signIn(): Promise<void>;
+  /** Start OAuth sign-in (redirects the page) */
+  signIn(provider?: 'github' | 'google'): Promise<void>;
   /** Sign out everywhere (clears cookie + localStorage) */
   signOut(): Promise<void>;
   /** Get session token (from cookie fallback to localStorage) */
@@ -74,10 +74,10 @@ export function createAuth(apiBase: string): FASAuth {
     }
   }
 
-  async function signIn(): Promise<void> {
+  async function signIn(provider: 'github' | 'google' = 'github'): Promise<void> {
     const redirect = window.location.href;
     const res = await fetch(
-      `${apiBase}/auth/google/url?redirect=${encodeURIComponent(redirect)}`
+      `${apiBase}/auth/${provider}/url?redirect=${encodeURIComponent(redirect)}`
     );
     const data = (await res.json()) as { url: string };
     window.location.href = data.url;

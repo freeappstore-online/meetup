@@ -13,7 +13,7 @@ export function useAuth() {
     });
   }, []);
 
-  const signIn = () => fas.auth.signIn();
+  const signIn = (provider?: 'github' | 'google') => fas.auth.signIn(provider);
 
   const signOut = async () => {
     await fas.auth.signOut();

@@ -30,14 +30,24 @@ export function Profile() {
             Sign in to RSVP to events and manage your profile.
           </p>
           <button
-            onClick={signIn}
+            onClick={() => signIn('github')}
             className="px-6 py-3 font-semibold text-white transition-colors"
             style={{
               borderRadius: "var(--radius-btn)",
               background: "var(--color-accent)",
             }}
           >
-            Sign in
+            Sign in with GitHub
+          </button>
+          <button
+            onClick={() => signIn('google')}
+            className="px-6 py-3 font-semibold text-white transition-colors"
+            style={{
+              borderRadius: "var(--radius-btn)",
+              background: "var(--color-accent)",
+            }}
+          >
+            Sign in with Google
           </button>
         </div>
         <div className="text-center text-xs pt-4" style={{ color: "var(--color-muted)" }}>
