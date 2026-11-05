@@ -41,8 +41,7 @@ export function Shell({ children }: { children: ReactNode }) {
       >
         <div className="mb-8">
           <h1
-            className="text-xl font-bold tracking-tight"
-            style={{ fontFamily: "var(--font-display)" }}
+            className="text-xl font-bold tracking-tight font-display"
           >
             <span style={{ color: "var(--color-ink)" }}>Free</span>
             <span style={{ color: "var(--color-accent)" }}>Meetup</span>

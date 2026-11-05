@@ -15,7 +15,7 @@ export function Profile() {
   if (!user) {
     return (
       <div className="space-y-6">
-        <h1 className="text-3xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
+        <h1 className="text-3xl font-bold font-display">
           Profile
         </h1>
         <div
@@ -61,7 +61,7 @@ export function Profile() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
+      <h1 className="text-3xl font-bold font-display">
         Profile
       </h1>
 

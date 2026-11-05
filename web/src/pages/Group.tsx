@@ -61,7 +61,7 @@ export function GroupPage() {
             {group.name.charAt(0)}
           </div>
           <div>
-            <h1 className="text-2xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
+            <h1 className="text-2xl font-bold font-display">
               {group.name}
             </h1>
             <p className="text-sm" style={{ color: "var(--color-muted)" }}>
@@ -79,7 +79,7 @@ export function GroupPage() {
       </div>
 
       <div>
-        <h2 className="text-xl font-semibold mb-4" style={{ fontFamily: "var(--font-display)" }}>
+        <h2 className="text-xl font-semibold mb-4 font-display">
           Upcoming Events
         </h2>
         <EventList events={groupEvents} loading={eventsLoading} />

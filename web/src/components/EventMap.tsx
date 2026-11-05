@@ -92,7 +92,7 @@ export function EventMap({ events, onSelect, className }: EventMapProps) {
           }}
         >
           <Popup>
-            <div style={{ minWidth: 200, fontFamily: "var(--font-body)" }}>
+            <div className="font-body" style={{ minWidth: 200 }}>
               <Link
                 to={`/event/${event.id}`}
                 style={{ color: "inherit", textDecoration: "none" }}

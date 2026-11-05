@@ -32,7 +32,7 @@
 
 body {
   margin: 0;
-  font-family: var(--font-body);
+  font-family: "Manrope", system-ui, sans-serif;
   background: var(--color-paper);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
@@ -40,7 +40,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: var(--font-display);
+  font-family: "Fraunces", Georgia, serif;
 }
 
 /* Smooth scrolling */
@@ -90,7 +90,7 @@ html {
 
 /* Leaflet overrides */
 .leaflet-container {
-  font-family: var(--font-body) !important;
+  font-family: "Manrope", system-ui, sans-serif !important;
 }
 
 .leaflet-popup-content-wrapper {

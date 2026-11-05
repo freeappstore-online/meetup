@@ -64,7 +64,7 @@ export function EventDetail({ event }: { event: Event }) {
         >
           {catInfo?.emoji} {catInfo?.label}
         </span>
-        <h1 className="text-3xl font-bold mb-2" style={{ fontFamily: "var(--font-display)" }}>
+        <h1 className="text-3xl font-bold mb-2 font-display">
           {event.title}
         </h1>
         {event.groupName && (
@@ -118,7 +118,7 @@ export function EventDetail({ event }: { event: Event }) {
 
       {/* Description */}
       <div>
-        <h2 className="text-lg font-semibold mb-2" style={{ fontFamily: "var(--font-display)" }}>
+        <h2 className="text-lg font-semibold mb-2 font-display">
           About this event
         </h2>
         <p className="leading-relaxed text-[15px]" style={{ color: "var(--color-muted)" }}>
